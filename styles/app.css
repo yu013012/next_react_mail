@@ -1,0 +1,103 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hamburger {
+  cursor: pointer;
+  text-align: right;
+  font-size: 24px;
+  padding: 10px;
+  color: #007bff;
+  &:hover {
+    color: #7b7b7b;
+  }
+}
+
+.menu {
+  position: absolute;
+  top: 0;
+  left: -250px;
+  width: 200px;
+  height: 100%;
+  background-color: #007bff;
+  transition: left 0.3s;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  z-index: 1;
+}
+
+.menu.open {
+  left: 0;
+}
+
+.back {
+  cursor: pointer;
+  text-align: right;
+  font-size: 24px;
+  padding: 10px;
+  color: white;
+  &:hover {
+    color: #7b7b7b;
+  }
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  background-color: #007bff;
+  text-align: left;
+
+  &:hover {
+    color: #007bff;
+    background: white;
+  }
+}
+
+.title {
+  left: 60px;
+  font-size: 24px;
+  padding: 10px;
+  position: absolute;
+  transition: left 0.3s;
+}
+
+.title.open {
+  left: 230px;
+}
+
+.content {
+  width: 100%;
+  padding: 10px;
+  left: 60px;
+  font-size: 15px;
+}
+
+.content.open {
+  left: 230px;
+}
+
+.mail {
+  background-color: #007bff;
+  border-radius: 3px;
+  padding: 5px;
+  margin: 5px 20px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+    color: white;
+    background: #7b7b7b;
+  }
+}
+
+.mail-time {
+  text-align: right;
+}
