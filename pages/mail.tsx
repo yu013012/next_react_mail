@@ -13,7 +13,7 @@ function App() {
         <div className="back" onClick={toggleMenu}>
           &#8592;
         </div>
-        <button>Logout</button>
+        <button className="logout">Logout</button>
       </div>
       <div className="hamburger" onClick={toggleMenu}>
         &#9776;
