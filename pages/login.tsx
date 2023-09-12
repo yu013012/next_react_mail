@@ -21,13 +21,13 @@ const A = styled.a`
     color: #7b7b7b;
   }
 `;
+const ttt = "1"
 
 const Login: NextPage<SSGProps> = () => {
   const router = useRouter();
 
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
-
   const mailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
@@ -49,21 +49,22 @@ const Login: NextPage<SSGProps> = () => {
   }
 
   const registerClick = () => {
-console.log("test")
     router.push('/register');
   };
 
   const loginClick = useCallback(async () => {
     try {
-      const email = mailRef.current?.value;
-      const password = passwordRef.current?.value;
+
+      // useRefの場合は下記、正しuseCallbackを使う場合はuseCallbackの外で値を取得していないといけない
+      //const email = mailRef.current?.value;
+      //const password = passwordRef.current?.value;
 
       const queryParams = {
-        email                 : email,
-        password              : password,
+        email: mail,
+        password: password,
       };
 
-      const result = await api(`${ constants.api }login`, queryParams);
+      const result = await api(`${constants.api}login`, queryParams);
       if (result) {
         localStorage.setItem('token', result);
         router.push('/mail');
@@ -71,6 +72,7 @@ console.log("test")
     } catch (error) {
       alert('データの取得エラー');
     }
+
   }, [mail, password]);
 
   return (

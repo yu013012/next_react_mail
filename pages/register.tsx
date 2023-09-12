@@ -60,14 +60,15 @@ const Register: NextPage<SSGProps> = () => {
 
   const registerClick = useCallback(async () => {
     try {
-      const name = nameRef.current?.value;
-      const email = mailRef.current?.value;
-      const password = passwordRef.current?.value;
-      const confirm = confirmRef.current?.value;
+      // useRefの場合は下記、正しuseCallbackを使う場合はuseCallbackの外で値を取得していないといけない
+      // const name = nameRef.current?.value;
+      // const email = mailRef.current?.value;
+      // const password = passwordRef.current?.value;
+      // const confirm = confirmRef.current?.value;
 
       const queryParams = {
         name                  : name,
-        email                 : email,
+        email                 : mail,
         password              : password,
         password_confirmation : confirm,
       };
