@@ -1,9 +1,14 @@
 const constants = {
   title: 'メールシステム',
   login: 'ログイン',
+  name: '名前',
+  register: '新規登録',
   mail_address: 'メールアドレス',
   password: 'パスワード',
-  register_button: '新規登録はこちら',
+  confirm: '確認',
+  register_button: '登録',
+  register_a: '新規登録はこちら',
+  back: '戻る',
 }
 
 export default constants;

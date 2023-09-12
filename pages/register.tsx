@@ -20,30 +20,32 @@ const A = styled.a`
   }
 `;
 
-const Login: NextPage<SSGProps> = () => {
+const Register: NextPage<SSGProps> = () => {
   const router = useRouter();
 
   const registerClick = () => {
     // /register ページに遷移
-    router.push('/register');
+    router.push('/mail');
   };
 
-  const loginClick = () => {
+  const backClick = () => {
     // /register ページに遷移
-    router.push('/mail');
+    router.push('/login');
   };
 
   return (
         <LoginWrapper>
-            <Tittle>{ constants.login }</Tittle>
+            <Tittle>{ constants.register }</Tittle>
+            <Input type="text" placeholder={ constants.name } />
             <Input type="text" placeholder={ constants.mail_address } />
             <Input type="password" placeholder={ constants.password } />
-            <Button title={ constants.login } onClick={() => loginClick()} />
-            <A href="#" onClick={ registerClick }>
-              { constants.register_a }
+            <Input type="password" placeholder={ constants.confirm } />
+            <Button title={ constants.register_button } onClick={() => registerClick()} />
+            <A href="#" onClick={ backClick }>
+              { constants.back }
             </A>
         </LoginWrapper>
   );
 };
 
-export default Login;
+export default Register;
