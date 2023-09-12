@@ -29,14 +29,15 @@ const Mail: NextPage<SSGProps> = () => {
     }
   };
 
+  // strict mode だと追跡機能で2回実行される
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('token')
         const result = await api(`${constants.api}mail_data`, null, token);
         setMailData(result)
       } catch (error) {
-        console.error('データの取得エラー:', error);
+        alert('データの取得エラー');
       }
     };
 
