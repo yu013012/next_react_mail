@@ -24,7 +24,7 @@ const api = async (apiEndpoint: string, queryParams: param | null = null, token:
 
     apiEndpoint = `${apiEndpoint}?${queryString}`;
   }
-
+  console.log(apiEndpoint)
   try {
     const response = await fetch(apiEndpoint, {
       method: 'GET',
@@ -38,10 +38,10 @@ const api = async (apiEndpoint: string, queryParams: param | null = null, token:
       const jsonData: Data = await response.json();
       data = jsonData.data
     } else {
-      console.error('HTTPエラーレスポンス:', response.status);
+      alert('HTTPエラーレスポンス');
     }
   } catch (error) {
-    console.error('API呼び出しエラー:', error);
+    alert('API呼び出しエラー');
   }
 
   return data;

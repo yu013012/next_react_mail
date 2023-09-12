@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import theme from '../theme';
+import theme from '../helper/theme';
 import React, { ReactNode } from 'react';
 
 type LoginWrapperProps = {

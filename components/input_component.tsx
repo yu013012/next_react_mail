@@ -1,9 +1,12 @@
 import styled from 'styled-components';
-import theme from '../theme';
+import theme from '../helper/theme';
 
 type InputProps = {
-  placeholder: string;
-  type: string;
+  placeholder_: string;
+  type_: string;
+  ref_: HTMLInputElement | null;
+  name_: string;
+  onChange_: HTMLInputElement | null;
 };
 
 const AnyInput = styled.input`
@@ -13,10 +16,10 @@ const AnyInput = styled.input`
 `;
 
 const Input = (props: InputProps) => {
-  const { placeholder, type } = props;
+  const { placeholder_, type_, ref_, name_, onChange_ } = props;
 
   return (
-      <AnyInput type={ type } placeholder={ placeholder } />
+      <AnyInput type={ type_ } placeholder={ placeholder_ } ref={ ref_ } name={ name_ } onChange={ onChange_ } />
   );
 };
 

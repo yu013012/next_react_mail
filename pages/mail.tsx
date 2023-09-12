@@ -1,8 +1,8 @@
 import React, { useState, useEffect  } from 'react';
 import { NextPage, GetStaticProps, GetServerSideProps } from 'next';
-import api from '../api';
-import constants from '../constants';
-import theme from '../theme';
+import api from '../helper/api';
+import constants from '../helper/constants';
+import theme from '../helper/theme';
 import View from '../components/mail_view_component'
 import { useRouter } from 'next/router';
 
@@ -25,7 +25,7 @@ const Mail: NextPage<SSGProps> = () => {
       localStorage.setItem('token', "");
       router.push('/login');
     } catch (error) {
-      console.error('データの取得エラー:', error);
+      alert('データの取得エラー');
     }
   };
 

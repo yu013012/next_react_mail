@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import theme from '../theme';
+import theme from '../helper/theme';
 
 type ViewProps = {
   data: [];
@@ -7,6 +7,11 @@ type ViewProps = {
 
 const View = (props: ViewProps) => {
   const { data } = props;
+
+  if (!data.length) {
+    return (<div />)
+  }
+
   return (
     <div>
       {data.map((item, index) => (
