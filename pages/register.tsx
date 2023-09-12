@@ -24,12 +24,10 @@ const Register: NextPage<SSGProps> = () => {
   const router = useRouter();
 
   const registerClick = () => {
-    // /register ページに遷移
     router.push('/mail');
   };
 
   const backClick = () => {
-    // /register ページに遷移
     router.push('/login');
   };
 

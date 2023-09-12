@@ -6,6 +6,7 @@ import Input from '../components/input_component'
 import LoginWrapper from '../components/login_wrapper_component'
 import constants from '../constants';
 import theme from '../theme';
+import api from '../api';
 
 const Tittle = styled.h2`
   margin-bottom: 30px;
@@ -24,13 +25,20 @@ const Login: NextPage<SSGProps> = () => {
   const router = useRouter();
 
   const registerClick = () => {
-    // /register ページに遷移
     router.push('/register');
   };
 
-  const loginClick = () => {
-    // /register ページに遷移
-    router.push('/mail');
+  const loginClick = async () => {
+    try {
+      const queryParams = { email: 'yniwa0128@gmail.com', password: '11111111' };
+      const result = await api(`${ constants.api }login`, queryParams);
+      if (result) {
+        localStorage.setItem('token', result);
+        router.push('/mail');
+      }
+    } catch (error) {
+      console.error('データの取得エラー:', error);
+    }
   };
 
   return (

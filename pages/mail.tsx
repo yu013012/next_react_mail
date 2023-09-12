@@ -1,11 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
+import { NextPage, GetStaticProps, GetServerSideProps } from 'next';
+import api from '../api';
+import constants from '../constants';
+import theme from '../theme';
+import View from '../components/mail_view_component'
+import { useRouter } from 'next/router';
 
-function App() {
+type Data = {
+  data: any;
+}
+
+const Mail: NextPage<SSGProps> = () => {
+  const [mailData, setMailData] = useState([{}]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const router = useRouter();
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const logout = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const result = await api(`${constants.api}logout`, null, token);
+      localStorage.setItem('token', "");
+      router.push('/login');
+    } catch (error) {
+      console.error('データの取得エラー:', error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const result = await api(`${constants.api}mail_data`, null, token);
+        setMailData(result)
+      } catch (error) {
+        console.error('データの取得エラー:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="app">
@@ -13,24 +49,17 @@ function App() {
         <div className="back" onClick={toggleMenu}>
           &#8592;
         </div>
-        <button className="logout">Logout</button>
+        <button className="logout" onClick={logout}>Logout</button>
       </div>
       <div className="hamburger" onClick={toggleMenu}>
         &#9776;
       </div>
       <div className={`title ${isMenuOpen ? 'open' : ''}`}>メール一覧</div>
       <div className="content">
-        <div className="mail">
-          <p>test</p>
-          <p className="mail-time">2023/09/01</p>
-        </div>
-        <div className="mail">
-          <p>test</p>
-          <p className="mail-time">2023/09/01</p>
-        </div>
+        <View data={mailData} />
       </div>
     </div>
   );
 }
 
-export default App;
+export default Mail;

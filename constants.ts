@@ -1,4 +1,5 @@
 const constants = {
+  api: 'http://ec2-18-183-167-84.ap-northeast-1.compute.amazonaws.com/api/',
   title: 'メールシステム',
   login: 'ログイン',
   name: '名前',
