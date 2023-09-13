@@ -5,6 +5,7 @@ import Head from 'next/head';
 import constants from '../helper/constants';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { MyContextProvider } from '../contexts/MyContextProvider';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -30,7 +31,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Component {...pageProps} />
+        <MyContextProvider>
+          <Component {...pageProps} />
+        </MyContextProvider>
       </main>
     </div>
   )

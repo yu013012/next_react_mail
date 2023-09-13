@@ -1,41 +1,30 @@
-import { NextPage, GetStaticProps } from 'next';
-import styled from 'styled-components';
-import Button from '../components/button_component'
-import Input from '../components/input_component'
-import LoginWrapper from '../components/login_wrapper_component'
-import constants from '../constants';
+import React from 'react';
+import { useMyContext } from '../contexts/MyContext';
+import { useRouter } from 'next/router';
 
-type SSGProps = {
-  test: string;
-};
-
-const Tittle = styled.h2`
-  margin-bottom: 30px;
-`;
-
-const SSG: NextPage<SSGProps> = (props) => {
-  const { test } = props;
-
+const SSG = () => {
   return (
-        <LoginWrapper>
-            <Tittle>{ constants.login }</Tittle>
-            <Input type="text" placeholder={ constants.mail_address } />
-            <Input type="password" placeholder={ constants.password } />
-            <Button title={ constants.login } onClick={() => console.log("test")} />
-        </LoginWrapper>
+      <div>
+        <CC />
+      </div>
   );
-};
+}
 
-// ビルド時に一度だけ読み込まれる
-// トリガーを付けることでも実行可能
-export const getStaticProps: GetStaticProps<SSGProps> = async () => {
-  const test = 'sdgdfgdfg';
-
-  return {
-    props: {
-      test: test,
-    },
+const CC = () => {
+  const { count, setCount, count2, setCount2 } = useMyContext();
+  const router = useRouter();
+  const increment = () => {
+    setCount(count + 1);
+    setCount2(count2 + "tt");
+    router.push('/ssg');
   };
-};
+  return (
+      <div>
+        <button onClick={increment}>test</button>
+        <p>{count}</p>
+        <p>{count2}</p>
+      </div>
+  );
+}
 
 export default SSG;

@@ -14,17 +14,21 @@ const View = (props: ViewProps) => {
 
   return (
     <div>
-      {data.map((item, index) => (
-        // 条件に基づいて要素をレンダリング
-        <div className="mail">
-          <p>{ item.name }</p>
-          {item.auto_send ? (
-            <p className="mail-time">{ item.auto_send }</p>
-          ) : (
-            <p className="mail-time">{ item.created_at_format }</p>
-          )}
-        </div>
-      ))}
+
+      {data.map((item, index) => {
+        // itemがループしているデータ、indexが識別用id
+        // keyを指定しないとエラーが出る
+        return (
+          <div className="mail" key={index}>
+            <p>{ item.name }</p>
+            {item.auto_send ? (
+              <p className="mail-time">{ item.auto_send }</p>
+            ) : (
+              <p className="mail-time">{ item.created_at_format }</p>
+            )}
+          </div>
+        )
+      })}
     </div>
   );
 };

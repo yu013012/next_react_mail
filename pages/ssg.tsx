@@ -1,36 +1,30 @@
-import { NextPage, GetStaticProps } from 'next';
-import Head from 'next/head';
+import React from 'react';
+import { useMyContext } from '../contexts/MyContext';
+import { useRouter } from 'next/router';
 
-type SSGProps = {
-  test: string;
-};
-
-const SSG: NextPage<SSGProps> = (props) => {
-  const { test } = props;
-
+const SSG = () => {
   return (
-    <div>
-      <Head>
-        <title>Static</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main>
-        <p>
-          このページ {test}
-        </p>
-      </main>
-    </div>
+      <div>
+        <CC />
+      </div>
   );
-};
+}
 
-export const getStaticProps: GetStaticProps<SSGProps> = async () => {
-  const test = 'sdgdfgdfg';
-
-  return {
-    props: {
-      test: test,
-    },
+const CC = () => {
+  const { count, setCount, count2, setCount2 } = useMyContext();
+  const router = useRouter();
+  const increment = () => {
+    setCount(count + 1);
+    setCount2(count2 + "tt");
+    router.push('/ssg_route');
   };
-};
+  return (
+      <div>
+        <button onClick={increment}>test</button>
+        <p>{count}</p>
+        <p>{count2}</p>
+      </div>
+  );
+}
 
 export default SSG;
