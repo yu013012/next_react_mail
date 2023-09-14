@@ -14,12 +14,12 @@ const View = (props: ViewProps) => {
 
   return (
     <div>
-
       {data.map((item, index) => {
         // itemがループしているデータ、indexが識別用id
         // keyを指定しないとエラーが出る
+        // keyはstringでないとエラーが出る
         return (
-          <div className="mail" key={index}>
+          <div className="mail" key={`${item.id}`}>
             <p>{ item.name }</p>
             {item.auto_send ? (
               <p className="mail-time">{ item.auto_send }</p>
