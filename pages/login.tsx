@@ -23,7 +23,7 @@ const A = styled.a`
 `;
 const ttt = "1"
 
-const Login: NextPage<SSGProps> = () => {
+const Login = () => {
   const router = useRouter();
 
   const [mail, setMail] = useState('');
@@ -31,11 +31,11 @@ const Login: NextPage<SSGProps> = () => {
   const mailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
-  const handleChange = (event) => {
-    setStateForPlaceholder(event.target.placeholder)
+  const handleChange = (event: any) => {
+    setStateForPlaceholder(event.target.placeholder, event)
   };
 
-  const setStateForPlaceholder = (placeholder: string) => {
+  const setStateForPlaceholder = (placeholder: string, event: any) => {
     switch (placeholder) {
       case `${ constants.mail_address }`:
         setMail(event.target.value);
